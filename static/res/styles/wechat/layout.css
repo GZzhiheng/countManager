@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft Yahei";
+    font-size: 16px;
+    color: #333;
+}
+td,th{
+    border-bottom: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    text-align: center;
+    padding: 8px;
+    font-weight: 300;
+}
+.tableBox td span{
+    font-size: 12px;
+}
+.small-th{
+    font-size: 14px;
+}
+table{
+    width: 100%;
+    border-top: 1px solid #e6e6e6;
+    border-left: 1px solid #e6e6e6;
+    box-shadow: 2px 2px 6px rgba(160, 139, 139, 0.3);
+    background-color: #fcfcfc;
+
+}
+.tableBox{
+    margin-top: 10px;
+}
+.head{
+    width: 100%;
+}
+.head img{
+    width: 100%
+}
+.log-section{
+    margin-top: 13%;
+}
+.log-form{
+    margin: 0px 7% 7%;
+    width: 86%;
+    box-sizing: border-box;
+}
+.log-form label{
+    display: inline-block;
+    width: 20%;
+    font-weight:500;
+    text-align: left;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+.log-form input,.log-form textarea{
+    width: 78%;
+    box-sizing: border-box;
+}
+.group{
+    margin-bottom: 20px;
+}
+textarea{
+    vertical-align: top;
+    border: 1px solid #C7C0C0;
+    text-indent: 0.6rem;
+    outline: none;
+    border-radius: 3px;
+    line-height: 18px;
+    padding: 5px;
+}
+input{
+    border: 1px solid #C7C0C0;
+    height:30px;
+    text-indent: 1rem;
+    outline: none;
+    border-radius: 3px;
+}
+input:focus,textarea:focus{
+    border-color: #1C7EBB;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+}
+.log-form button{
+    width: 100%;
+}
+button{
+    background-color: #058ae2;
+    border-color: #058ae2;
+    border-radius: 3px;
+    color: #fff;
+    height: 36px;
+    outline: none;
+    border: 1px solid #f6f6f6;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 7px rgba(224, 196, 196, 0.82);
+}
+button:active{
+    background-color: #66aede;
+    color: #eee;
+}
+.msg-form{
+    border:1px solid #e6e6e6;
+    box-shadow: 2px 2px 6px rgba(160, 139, 139, 0.3);
+    padding: 20px;
+    background-color: rgba(255,255,255,0.6);
+}
+.msg-section{
+    background: url("../../images/wechat/form-bg.jpg") no-repeat bottom left ;
+    background-color: #ededee;
+    background-size: cover;
+    padding-top: 15%;
+    height:100%;
+    box-sizing: border-box;
+}
+.msg-form input,.msg-form textarea{
+    background-color: rgba(255,255,255,0.5);
+}
+.consume-section{
+    padding: 5% 5%;
+    box-sizing: border-box;
+    background: url("../../images/wechat/money-bg.jpg")no-repeat bottom left;
+    height: 100%;
+    background-size: contain;
+}
+.contact-section{
+    background: url("../../images/wechat/contact-bg.jpg") no-repeat bottom left;
+    background-color: #ededee;
+    background-size: cover;
+    line-height: 34px;
+    font-size: 14px;
+}
+.info-section{
+    overflow: hidden;
+    background: url("../../images/wechat/info-bg.jpg")no-repeat bottom left;
+    background-size: contain;
+    background-color: #ebebeb;
+    height:100%;
+}
+.infomation{
+    padding: 8%;
+    margin-top: 20px;
+    background-color: #fcfcfc;
+}
+.infomation p {
+    line-height: 32px;
+}
+.infomation .p2{
+    font-size: 14px;
+}
+.infomation .p3{
+    padding-top: 26px;
+}
+.infomation .p3 a{
+    color:#EA0505;
+}
+.balance-section{
+    overflow: hidden;
+    background: url("../../images/wechat/money-bg.jpg")no-repeat bottom left;
+    background-size: contain;
+    background-color: #fdfdfd;
+    height:100%;
+}
+.balance{
+    margin: 0 7%;
+    margin-top: 20px;
+    padding: 8%;
+    box-shadow: 2px 2px 6px rgba(160, 139, 139, 0.3);
+    padding: 20px;
+}
+.balance p{
+    line-height: 36px;
+}
+/*********tips消息提示框 start*******/
+.tipsBox{
+    position: fixed;
+    top: 300px;
+    width: 100%;
+    background-color: transparent;
+}
+.tips{
+    padding: 8px 15px;
+    color: #fff;
+    border-radius: 3px;
+    margin: 0 auto;
+    background-color: rgba(0,0,0,0.6);
+    text-align: center;
+    animation: tips .5s;
+    max-width: 70%;
+    width: 150px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    border-radius: 30px;
+}
+@keyframes tips {
+    from {
+        opacity: 0;
+        transform:translate(0px,1000px)
+    }
+    to {
+        opacity: 1;
+        transform:translate(0px,0px)
+    }
+}
+
+@-webkit-keyframes tips {
+    from {
+        opacity: 0;
+        transform:translate(0px,1000px)
+    }
+    to {
+        opacity: 1;
+        transform:translate(0px,0px)
+    }
+}
+
+/*********tips消息提示框 end*********/

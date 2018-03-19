@@ -1,0 +1,18 @@
+/*ngTree is custom plugin css*/
+.tree{padding:5px; overflow: hidden;}
+.tree .tree{padding:0;padding-left:20px; display: block;}
+.tree li{padding:3px 0;overflow: hidden;}
+.tree li .fold{display:block; float:left;width:12px; height:12px; background: url(../img/fold.png) 0 0 no-repeat; cursor: pointer;margin-top:5px;margin-right:5px;}
+.tree li .fold.open{background-position-y: -12px;}
+.tree li .title{width:85%;color:#666; overflow: hidden; white-space: nowrap;    text-overflow: ellipsis; cursor: pointer;}
+.tree li .title.hover{color:#1C7EBB}
+.tree li .title.hover .icon{background-color: #b1b0b0;}
+.tree li  .last{opacity: 0;}
+.tree li .title .icon{background-color: #ccc;padding:3px; border-radius: 3px; color:#fff; float: left; margin-right: 3px;}
+.tree li .title .icon.hide{display: none;}
+@media screen and (max-width:1400px ) {
+		.tree .tree{padding-left: 10px;}
+}
+
+
+

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js" ng-app="" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>广告易投放系统</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="">
+  <link rel="shortcut icon" href="./static/res/ico/favicon.ico" mce_href="./static/res/ico/favicon.ico"
+        type="image/x-icon">
+  <!-- Needs images, font... therefore can not be part of main.css -->
+  <link rel="stylesheet" href="./static/res/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- end Needs images -->
+  <link rel="stylesheet" href="./static/res/styles/main.css">
+  <!-- nprogress 进度条样式 -->
+  <link rel="stylesheet" href="./static/res/styles/nprogress.css">
+  <!-- boostrap tables -->
+  <link rel="stylesheet" href="./static/res/styles/dataTables.bootstrap.min.css">
+  <!-- boostrap daterangepicker样式 -->
+  <link rel="stylesheet" href="./static/res/styles/datepicker.css">
+  <link rel="stylesheet" href="./static/res/styles/daterangepicker-bs3.css">
+  <!-- 日期 样式 -->
+  <link rel="stylesheet" href="./static/res/styles/date.css">
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="./static/res/styles/index.css?_=1647928653834">
+  <!--富文本编辑器-->
+  <link type="text/css" rel="stylesheet" href="./static/res/scripts/tools/wangEditor/css/wangEditor.min.css"/>
+  <!--select2下拉框-->
+  <link type="text/css" rel="stylesheet" href="./static/res/scripts/tools/select2/css/select2.min.css"/>
+  <!--右击菜单-->
+  <link rel="stylesheet" href="./static/res/scripts/tools/contextmenu/jquery.contextMenu.css"/>
+  <link rel="stylesheet" href="./static/res/styles/bootstrap-select-2.0.0-beta1.min.css">
+  <!--&lt;!&ndash;表格、弹窗&ndash;&gt;-->
+  <!--<link rel="stylesheet" href="//at.alicdn.com/t/font_1473762766_7074292.css">-->
+  <!--<link rel="stylesheet" href="./static/res/styles/element-ui.css" media="all">-->
+  <!--&lt;!&ndash; 账号管家样式 &ndash;&gt;-->
+  <!--<link rel="stylesheet" href="./static/res/styles/accountManager.css?_=1.0">-->
+</head>
+<body>
+<!--[if lt IE 9]>
+<div class="lt-ie9-bg">
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
+  <p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+</div>
+<![endif]-->
+<section id="app-container">
+  <section id="app" class="app">
+    <header id="header" class="header-container  ng-scope header-fixed bg-dark ">
+      <!--头部 start-->
+      <!-- Navigation -->
+      <header class="top-header clearfix ng-scope">
+        <!-- Logo -->
+        <div class="logo bg-dark">
+          <a href="javascript:;">
+            <span class="logo-icon glyphicon glyphicon-th-large"></span>
+            <span class="logo-text ng-binding" id="logo">
+                <img src="./static/res/images/logo_1.png" alt="">
+            </span>
+          </a>
+        </div>
+        <!-- needs to be put after logo to make it work -->
+        <div class="menu-button" toggle-off-canvas="">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </div>
+        <div class="top-nav">
+          <ul class="nav-left list-unstyled">
+            <li>
+              <a title="隐藏导航面板" href="javascript:;" data-toggle-nav-collapsed-min="" class="toggle-min"><i
+                class="fa fa-bars"></i></a>
+            </li>
+            <li style="display: none" class="dropdown hidden-xs" uib-dropdown="" is-open="status.isopenSettings">
+              <a href="javascript:;" uib-dropdown-toggle="" ng-disabled="disabled" class="dropdown-toggle"
+                 aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+              <div class="dropdown-menu with-arrow panel panel-default admin-options dropdown-menu-scaleIn"
+                   uib-dropdown-menu="" ui-not-close-on-click="">
+                <div class="panel-heading"><span data-translate="ADMIN_OPTIONS" class="ng-scope">界面管理项</span></div>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <p>界面风格</p>
+                    <label class="ui-radio">
+                      <input name="layout" type="radio" value="boxed" ng-model="main.layout"
+                             class="ng-pristine ng-untouched ng-valid ng-not-empty"
+                             aria-invalid="false"><span>盒子</span></label>
+                    <label class="ui-radio">
+                      <input name="layout" type="radio" value="wide" ng-model="main.layout" checked
+                             class="ng-pristine ng-untouched ng-valid ng-not-empty"
+                             aria-invalid="false"><span>横幅</span></label>
+                  </li>
+                  <li class="list-group-item">
+                    <p>补充浮动</p>
+                    <label class="ui-checkbox">
+                      <input name="main-fixed" type="checkbox" value="option1" ng-model="main.fixedHeader"
+                             checked class="ng-pristine ng-untouched ng-valid ng-not-empty"
+                             aria-invalid="false"><span>头部浮动</span></label>
+                    <br>
+                    <label class="ui-checkbox">
+                      <input name="main-fixed" type="checkbox" value="option1" ng-model="main.fixedSidebar"
+                             checked class="ng-pristine ng-untouched ng-valid ng-not-empty"
+                             aria-invalid="false"><span>侧栏浮动</span></label>
+                  </li>
+                  <li class="list-group-item">
+                    <p>
+                      <span>页面过渡风格: </span>
+                      <span class="space"></span>
+                      <select ng-model="main.pageTransition" id="pageTransition"
+                              ng-options="ageTransitionOpt.name for ageTransitionOpt in pageTransitionOpts"
+                              class="ng-pristine ng-untouched ng-valid ng-not-empty" aria-invalid="false">
+                        <option label="浅上浮" value="animate-fade-up">浅上浮</option>
+                        <option label="向外撑开" value="ainmate-scale-up" selected="selected">向外撑开</option>
+                        <option label="右侧滑入" value="ainmate-slide-in-right">右侧滑入</option>
+                        <option label="Y轴翻转" value="animate-flip-y">Y轴翻转</option>
+                      </select>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <div class="navbar-header company-title">
+            <div class="navbar-brand">耐沃克</div>
+          </div>
+          <ul class="nav-right pull-right list-unstyled">
+
+            <li class="dropdown text-normal nav-profile" uib-dropdown="" is-open="status.isopenProfile">
+              <a href="javascript:;" style="padding-top: 15px;" uib-dropdown-toggle="" ng-disabled="disabled"
+                 class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-warning fa-fw img-circle img30_30" style="color:#efef77">&nbsp;&nbsp;</i>
+                <span class="hidden-xs">
+                        <span data-translate="LISA" class="ng-scope">MCC未授权</span>
+										</span>
+              </a>
+              <ul class="dropdown-menu with-arrow pull-right dropdown-menu-scaleIn" uib-dropdown-menu="">
+                <li>
+                  <a href="javascript:;">
+                    <i class="fa glyphicon glyphicon-plus" style="margin-right:5px"></i>
+                    <span data-translate="LOG_OUT" class="ng-scope" id="authorization">添加授权</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown text-normal nav-profile" uib-dropdown="" is-open="status.isopenProfile">
+              <a href="javascript:;" style="padding-top: 15px;" uib-dropdown-toggle="" ng-disabled="disabled"
+                 class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user fa-fw img-circle img30_30">&nbsp;&nbsp;</i>
+                <span class="hidden-xs">
+                        <span data-translate="LISA" class="ng-scope">管理员</span>
+										</span>
+              </a>
+            </li>
+            <li class="dropdown text-normal nav-profile" uib-dropdown="" is-open="status.isopenProfile">
+              <a href="javascript:void(0)" style="padding-top: 15px;" uib-dropdown-toggle="" ng-disabled="disabled"
+                 class="dropdown-toggle" target="modal" title="修改密码" aria-haspopup="true" aria-expanded="false">
+                <i class="fa glyphicon glyphicon-edit">&nbsp;&nbsp;</i>
+                <span class="hidden-xs">
+                        <span data-translate="LISA" class="ng-scope">修改密码</span>
+										</span>
+              </a>
+            </li>
+
+            <li class="dropdown text-normal nav-profile" uib-dropdown="" is-open="status.isopenProfile">
+              <a href="javascript:void(0)" style="padding-top: 15px;" uib-dropdown-toggle="" ng-disabled="disabled"
+                 class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-sign-out fa-fw img-circle img30_30">&nbsp;&nbsp;</i>
+                <span class="hidden-xs">
+                        <span data-translate="LISA" class="ng-scope">注销</span>
+										</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </header>
+      <!--头部 end-->
+    </header>
+    <div class="main-container">
+      <aside class="nav-container nav-vertical ng-scope nav-fixed bg-white" id="nav-container">
+        <!--侧栏 start-->
+        <!-- Navigation -->
+        <div class="nav-wrapper ng-scope">
+          <div class="" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+            <ul id="nav" class="nav nav-fixed" data-slim-scroll="" data-accordion-nav="" data-highlight-active=""
+                style="overflow: hidden; width: auto; height: 100%;">
+              <li>
+                <a href="javascript:void(0)" target="hash">
+                  <i class="fa glyphicon glyphicon-home">
+                    <span class="icon-bg bg-danger"></span>
+                  </i>
+                  <span data-translate="工作台" class="ng-scope">工作台</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" target="hash">
+                  <i class="fa glyphicon glyphicon-user">
+                    <span class="icon-bg bg-orange"></span>
+                  </i>
+                  <span data-translate="客户管理" class="ng-scope">客户管理</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <i class="fa fa-file-text-o">
+                    <span class="icon-bg bg-success"></span>
+                  </i>
+                  <span data-translate="报告管理" class="ng-scope">报告管理</span>
+                </a>
+
+                <ul style="display: none;">
+                  <li>
+                    <a href="javascript:void(0)" target="hash">
+                      <i class="fa fa-circle"></i>
+                      <span data-translate="报告列表" class="ng-scope">报告列表</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash">
+                      <i class="fa fa-circle"></i>
+                      <span data-translate="报告历史" class="ng-scope">报告历史</span>
+                    </a>
+                  </li>
+                  <!--li><a href="/sys/formatSettingList" target="hash"><i class="fa fa-circle"></i><span
+                        data-translate="格式设置" class="ng-scope">格式设置</span></a></li>
+                        <li><a href="/sys/pushSettingList" target="hash"><i class="fa fa-circle"></i><span
+                        data-translate="推送设置" class="ng-scope">推送设置</span></a></li-->
+                  <li>
+                    <a href="javascript:void(0)" target="hash">
+                      <i class="fa fa-circle"></i>
+                      <span data-translate="报告管理" class="ng-scope">报告配置</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="javascript:void(0)" target="hash">
+                      <i class="fa fa-circle"></i>
+                      <span data-translate="邮件发送列表" class="ng-scope">邮件发送列表</span>
+                    </a>
+                  </li>
+                </ul>
+                <i class="fa fa-caret-right icon-has-ul"></i>
+              </li>
+              <li>
+                <a href="javascript:;"><i class="fa fa-file-text-o"><span
+                  class="icon-bg bg-primary-light"></span></i><span data-translate="工作报表"
+                                                                    class="ng-scope">工作报表</span></a>
+                <ul style="display: none;">
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="客户账户"
+                                                                                                 class="ng-scope">客户账户</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="消费列表"
+                                                                                                 class="ng-scope">消费列表</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="工作统计"
+                                                                                                 class="ng-scope">工作统计</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="工作统计"
+                                                                                                 class="ng-scope">待续费客户报表</span></a>
+                  </li>
+                </ul>
+                <i class="fa fa-caret-right icon-has-ul"></i>
+              </li>
+              <li>
+                <a href="javascript:;"><i class="fa glyphicon glyphicon-bell"><span
+                  class="icon-bg bg-danger"></span></i><span data-translate="告警预警" class="ng-scope">告警预警</span></a>
+                <ul style="display: none;">
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="告警列表"
+                                                                                                 class="ng-scope">告警列表</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="告警列表"
+                                                                                                 class="ng-scope">告警历史</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="告警设置"
+                                                                                                 class="ng-scope">告警设置</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="告警统计"
+                                                                                                 class="ng-scope">告警统计</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="告警模版"
+                                                                                                 class="ng-scope">告警模版</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="告警设置"
+                                                                                                 class="ng-scope">告警指标</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="处理器设置"
+                                                                                                 class="ng-scope">处理器设置</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span
+                      data-translate="优化建议处理器" class="ng-scope">优化建议处理器</span></a>
+                  </li>
+                </ul>
+                <i class="fa fa-caret-right icon-has-ul"></i>
+              </li>
+              <li>
+                <a href="javascript:void(0)" target="hash">
+                  <i class="glyphicon glyphicon-plus"><span class="icon-bg bg-success"></span></i>
+                  <span data-translate="创建管理" class="ng-scope">创建管理</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="javascript:void(0)" target="hash"><i class="fa glyphicon glyphicon-th"><span
+                  class="icon-bg bg-warning"></span></i><span data-translate="公司管理" class="ng-scope">公司管理</span></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" target="hash"><i class="fa glyphicon glyphicon-gift"><span
+                  class="icon-bg bg-primary"></span></i><span data-translate="辅助工具" class="ng-scope">辅助工具</span></a>
+              </li>
+              <li>
+                <a href="/#/analysis/index" target="hash"><i class="fa glyphicon glyphicon-gift"><span
+                  class="icon-bg bg-primary"></span></i><span data-translate="辅助工具" class="ng-scope">账号管家</span></a>
+              </li>
+              <li>
+                <a href="javascript:;"><i class="fa glyphicon glyphicon-cog"><span
+                  class="icon-bg bg-violet"></span></i><span data-translate="建站管理" class="ng-scope">建站管理</span></a>
+                <ul style="display: none;">
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="网站数据"
+                                                                                                 class="ng-scope">网站数据</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="LP管理"
+                                                                                                 class="ng-scope">LandingPage</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="LP模板管理"
+                                                                                                 class="ng-scope">LandingPage模板</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="站点管理"
+                                                                                                 class="ng-scope">站点管理</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="站点模板管理"
+                                                                                                 class="ng-scope">站点模板管理</span></a>
+                  </li>
+                </ul>
+                <i class="fa fa-caret-right icon-has-ul"></i>
+              </li>
+              <li>
+                <a href="javascript:;"><i class="fa glyphicon glyphicon-cog"><span
+                  class="icon-bg bg-violet"></span></i><span data-translate="询盘管理" class="ng-scope">询盘管理</span></a>
+                <ul style="display: none;">
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="询盘列表"
+                                                                                                 class="ng-scope">询盘列表</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="询盘统计"
+                                                                                                 class="ng-scope">询盘统计</span></a>
+                  </li>
+                </ul>
+                <i class="fa fa-caret-right icon-has-ul"></i>
+              </li>
+              <li>
+                <a href="javascript:;"><i class="fa glyphicon glyphicon-cog"><span
+                  class="icon-bg bg-violet"></span></i><span data-translate="系统设置" class="ng-scope">系统设置</span></a>
+                <ul style="display: none;">
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="用户管理"
+                                                                                                 class="ng-scope">用户管理</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="部门管理"
+                                                                                                 class="ng-scope">部门管理</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="管理"
+                                                                                                 class="ng-scope">角色管理</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash"><i class="fa fa-circle"></i><span data-translate="业务设置"
+                                                                                                 class="ng-scope">常量设置</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash">
+                      <i class="fa fa-circle"></i>
+                      <span data-translate="行业分类" class="ng-scope">行业分类</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" target="hash">
+                      <i class="fa fa-circle"></i>
+                      <span data-translate="数据渠道" class="ng-scope">数据渠道</span></a>
+                  </li>
+                </ul>
+                <i class="fa fa-caret-right icon-has-ul"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--侧栏 end-->
+      </aside>
+      <section id="content" class="content-container ">
+        <!--public start-->
+
+        <!--局部应用入口-->
+        <div id="creation" class="acountManager"></div>
+
+
+        <!--public end-->
+      </section>
+    </div>
+  </section>
+</section>
+<!--集成jQuery和boostrap 等js框架-->
+<script src="./static/res/scripts/libs/main.js"></script>
+<!-- bootstrapValidator 插件-->
+<script src="./static/res/scripts/tools/bootstrapValidator.min.js"></script>
+<!--进度条js插件-->
+<script src="./static/res/scripts/tools/nprogress.js"></script>
+<!--自定义封装 辅助工具类-->
+<script src="./static/res/scripts/tools/dialog.d.js"></script>
+<!--自定义封装 boostrap daterpicker 弹框 js-->
+<script type="text/javascript" src="./static/res/scripts/tools/bootstrap-datepicker.min.js"></script>
+<!--自定义封装 boostrap daterangepicker 弹框 js-->
+<script type="text/javascript" src="./static/res/scripts/tools/moment.min.js"></script>
+<script type="text/javascript" src="./static/res/scripts/tools/daterangepicker.js"></script>
+<!--滚动条 js-->
+<script type="text/javascript" src="./static/res/scripts/tools/jquery.slimscroll.min.js"></script>
+<!--多出文本省略号... js-->
+<script src="./static/res/scripts/tools/clamp.min.js"></script>
+<!--自定义封装 boostrap validator 表单验证-->
+<script src="./static/res/scripts/common/validate.js"></script>
+<!--自定义封装 日期类插件 表单验证-->
+<script src="./static/res/scripts/tools/jQuery.date.js"></script>
+<!--jquery 模板渲染输出插件 依赖jQuery 1.4以上版本 js-->
+<script type="text/javascript" src="./static/res/scripts/tools/jquery.tmpl.min.js"></script>
+<!--Bootstrap Paginator 分页插件-->
+<script src="./static/res/scripts/tools/bootstrap-paginator.min.js"></script>
+<!--自定义 公共应用函数-->
+<script src="./static/res/scripts/common/common.js"></script>
+<!--页面公共部分的各种效果控制事件-->
+<script src="./static/res/scripts/index.js"></script>
+<!--自定义封装 boostrap modal 弹框 js-->
+<script src="./static/res/scripts/common/modal.js"></script>
+<!--自定义封装 boostrap modal 弹框 js-->
+<!--<script src="./static/res/scripts/common/config.js"></script>-->
+<!--自定义表格、弹窗 js-->
+
+<script type="text/javascript" charset="utf-8" src="./static/res/scripts/tools/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="./static/res/scripts/tools/ueditor/ueditor.all.min.js"></script>
+<!--select2下拉框-->
+<script src="./static/res/scripts/tools/select2/js/select2.min.js" charset="UTF-8"></script>
+<script src="./static/res/scripts/tools/select2/js/i18n/zh-CN.js" charset="UTF-8"></script>
+<!--右击菜单-->
+<script src="./static/res/scripts/tools/contextmenu/jquery.contextMenu.js"></script>
+<script src="./static/res/scripts/tools/bootstrap-select-2.0.0-beta1.js"></script>
+
+</body>
+
+</html>
+

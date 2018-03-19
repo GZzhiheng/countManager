@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/ng-tree.css"/>
+		<style>
+			#tree{width:500px;margin:100px auto;}
+		</style>
+	</head>
+	<body>
+		
+		
+		<div id="tree">
+			
+		</div>
+		
+		
+		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+		<script src="ngTree.js"></script>
+		
+		<script>
+			$(function(){
+				var $data = [
+					{
+						id:1,
+						title: '广告组1',
+						url: 'http://baidu.com',
+						icon:'glyphicon-time',
+						pid:0,
+					},{
+						id:2,
+						title: '广告组2',
+						url: 'http://baidu.com',
+						icon:'glyphicon-play-circle',
+						pid:0,
+					},{
+						id:3,
+						title: '广告组1-1',
+						url: 'http://baidu.com',
+						pid:1,
+					},{
+						id:4,
+						title: '广告组2-1',
+						url: 'http://baidu.com',
+						pid:2,
+					},{
+						id:5,
+						title: '广告组2-2',
+						url: 'http://baidu.com',
+						pid:4,
+					},{
+						id:6,
+						title: '广告组3',
+						url: 'http://baidu.com',
+						icon:false,
+						pid:0,
+					},{
+						id:7,
+						title: '广告组3',
+						url: 'http://baidu.com',
+						pid:6,
+					},{
+						id:8,
+						title: '广告组3',
+						url: 'http://baidu.com',
+						pid:6,
+					},{
+						id:9,
+						title: '广告组3',
+						url: 'http://baidu.com',
+						pid:8,
+					},{
+						id:10,
+						title: '广告组1111',
+						url: 'http://baidu.com',
+						pid:9,
+					}
+				];
+				
+				
+				var tree = new ngTree({  		//实例化ngtree
+					ele : '#tree', 				//绑定结构
+					data: $data,				//设置数据
+					defaultIcon:'glyphicon-tag',//设置默认icon，默认为glyphicon-tag
+					icon:true, 					//false不显示icon,默认true
+				}); 
+					
+				//or function set data
+				//tree.setData($data); //设置数据
+			})
+		</script>
+		
+	</body>
+</html>
